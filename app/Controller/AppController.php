@@ -80,6 +80,7 @@ class AppController extends BaseController
         }
 
         $this->Auth->allow(array("clearSearchCache"));
+        $this->Auth->allow();
     }
     
     public function afterIndex()

@@ -1,4 +1,5 @@
 <?php
+require_once 'env.php';
 /**
  * Configure the Error handler used to handle errors for your application. By default
  * ErrorHandler::handleError() is used. It will display errors using Debugger, when debug > 0
@@ -103,3 +104,4 @@ Cache::config('_cake_model_', array(
 	'duration' => $duration
 ));
 Configure::write('Routing.prefixes', array('admin'));
+Configure::write('Cache.check', true);
