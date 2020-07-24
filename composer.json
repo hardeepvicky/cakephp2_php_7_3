@@ -19,6 +19,7 @@
     },
     "require": {
         "php": "^7.2.0",        
+        "hardeep-vicky/php-query-builder": "dev-master"
     },
     "suggest": {
         "ext-openssl": "You need to install ext-openssl or ext-mcrypt to use AES-256 encryption",

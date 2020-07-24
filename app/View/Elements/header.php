@@ -160,19 +160,6 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
-                            <a href="<?= $this->Html->url(array("controller" => "users", "action" => "my_profile")) ?>">
-                                <i class="icon-user"></i> My Profile 
-                            </a>
-                        </li>
-                        <li>
-                            <?php 
-                                echo $this->Html->link("<i class='fa fa-cogs'></i> Settings", 
-                                    array( "controller" => "Settings", "action" => "save", "admin" => true),
-                                    array("escape" => false)
-                                );
-                            ?>
-                        </li>
-                        <li>
                             <?php 
                                 echo $this->Html->link("<i class='fa fa-lock'></i> Change Password", 
                                     array( "controller" => "users", "action" => "admin_change_password"),

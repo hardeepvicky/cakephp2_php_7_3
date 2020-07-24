@@ -80,7 +80,7 @@ class AppController extends BaseController
         }
 
         $this->Auth->allow(array("clearSearchCache"));
-        $this->Auth->allow();
+        //$this->Auth->allow();
     }
     
     public function afterIndex()
@@ -97,12 +97,14 @@ class AppController extends BaseController
         
         if ($this->authUser && isset($this->authUser['group_id']) && !$this->request->is("ajax") && $this->layout != "ajax")
         {
+            require_once(APP . "Config/Menu.php");
+            
             $menus = Cache::read("menus_" . $this->authUser['group_id'], 'acl_config');
             
             if (!$menus)
             {
                 $menus = Menu::get(Menu::$default, $this->Acl, $this->authUser['group_id']);
-                Cache::write("menus_" . $this->authUser['group_id'], $menus, 'acl_config');
+                //Cache::write("menus_" . $this->authUser['group_id'], $menus, 'acl_config');
             }
 
             $home_link = Menu::getDefaultLink($menus);

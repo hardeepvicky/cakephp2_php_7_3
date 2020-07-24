@@ -9,13 +9,11 @@ $(document).ready(function()
 
     $(".copy-text").copyText();
     
-    $(".copy-value").copyValue();
+    $(".css-toggler").cssClassToggle();
     
-    $(".css-toggler").cssToggler();
+    $(".checkbox-css-toggler").checkboxCssToggler();
     
-    $("input[type='checkbox'].checkbox-css-toggler").checkboxCssToggler();
-    
-    $(".ajax-loader").ajaxLoader();
+    $(".ajax-load").ajaxLoad();
     
     $('.mt-multiselect').multiselect({
         enableFiltering: true,
@@ -44,17 +42,9 @@ $(document).ready(function()
         defaultTime : ""
     });
     
-    $(".more-text").moreText();
+    $(".sr-paragraph").srParagraph();
     
-    $(".data-table").DataTable( {
-        colReorder: true,
-        dom: 'Bfrtip',
-        buttons: [
-            'csv', 'excel', 'pdf', 'print'
-        ]
-    });
-    
-    $(".js-export-csv").jsExportCsv();
+    $(".export-csv").srTableCSVExport();
     
     $(".invalid-char").invalidURLChar();
     
@@ -66,7 +56,7 @@ $(document).ready(function()
     
     $("a.toggle-tinyfield").toggleTinyField();
     
-    $(".char-limit-required").charLimitRequired();
+    $("select.cascade").cascade();
     
     if (typeof onEventBindFinish == "function")
     {

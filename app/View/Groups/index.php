@@ -4,7 +4,7 @@
             <?php echo $this->element("breadcum"); ?>
         </div>
         <div class="col-md-3 pull-right" style="text-align: right; margin-top: 4px;">
-            <a href="<?= $this->Html->url(array("action" => "admin_add")); ?>" class="btn btn-circle green-meadow">
+            <a href="<?= $this->Html->url(array("action" => "add")); ?>" class="btn btn-circle green-meadow">
                 <i class="fa fa-plus"></i> Add
             </a>
         </div>

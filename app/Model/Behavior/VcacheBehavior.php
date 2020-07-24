@@ -66,7 +66,14 @@ class VcacheBehavior extends ModelBehavior
     {
         if (empty($order))
         {
-            $order = ["$value ASC"];
+            if ($model->hasField("dispaly_order"))
+            {
+                $order = ["$value ASC"];
+            }
+            else
+            {
+                $order = ["$value ASC"];
+            }
         }
         
         $data = $this->findCache($model, $order);

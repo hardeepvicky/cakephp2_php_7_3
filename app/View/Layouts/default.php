@@ -44,10 +44,12 @@
         <link href="/assets/layouts/layout/css/themes/darkblue.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" id="style_color" />
         <link href="/assets/layouts/layout/css/custom.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         
-        <link href="/js/tf-loader/tf-loader.css?<?= VERSION_CSS ?>" rel="stylesheet" type="text/css" />
-        <link href="/css/style.css?<?= VERSION_CSS ?>" rel="stylesheet" type="text/css" />
+        <link href="/node_modules/sr-basic-feature/dist/sr-basic-feature.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
+        <link href="/node_modules/sr-bootstrap-components/dist/sr-ajax-file-upload.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
+        <link href="/node_modules/sr-bootstrap-components/dist/sr-datatable.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
+        
         <link href="/css/bootstrap-extend.css?<?= VERSION_CSS ?>" rel="stylesheet" type="text/css" />
-        <link href="/js/SRDatatable/style.css?<?= VERSION_CSS ?>" rel="stylesheet" type="text/css" />
+        <link href="/css/style.css?<?= VERSION_CSS ?>" rel="stylesheet" type="text/css" />
         
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="/favicon.ico" /> 
@@ -120,22 +122,25 @@
         <script src="/assets/layouts/layout/scripts/layout.min.js?<?= VERSION_LIB ?>" type="text/javascript"></script>        
         <!-- END THEME LAYOUT SCRIPTS -->
         
+        <script src="/node_modules/sr-basic-feature/dist/sr-basic-functions.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
+        <script src="/node_modules/sr-basic-feature/dist/sr-basic-feature.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
+        <script src="/node_modules/sr-bootstrap-components/dist/sr-datatable.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
+        <script src="/node_modules/sr-bootstrap-components/dist/sr-ajax-file-upload.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
+        
         <script src="/js/basic_functions.js?<?= VERSION_JS ?>" type="text/javascript"></script>
-        <script src="/js/api.js?<?= VERSION_JS ?>" type="text/javascript"></script>
-        <script src="/js/SRDatatable/script.js?<?= VERSION_JS ?>" type="text/javascript"></script>
-        <script src="/js/tf-loader/tf-loader.js?<?= VERSION_JS ?>" type="text/javascript"></script>
-        <script src="/js/jquery-extend.js?<?= VERSION_JS ?>" type="text/javascript"></script>
-        <script src="/js/bootstrap-extend.js?<?= VERSION_JS ?>" type="text/javascript"></script>        
-        <script src="/js/image-gallery.js?<?= VERSION_JS ?>" type="text/javascript" ></script>
+        <script src="/js/jquery-extend.js?<?= VERSION_JS ?>" type="text/javascript"></script>                
+        <script src="/js/bootstrap-extend.js?<?= VERSION_JS ?>" type="text/javascript"></script>                
+        <script src="/js/jquery-input-validate.js?<?= VERSION_JS ?>" type="text/javascript"></script>
+        <script src="/js/ajax.js?<?= VERSION_JS ?>" type="text/javascript"></script>        
+        
         <script src="/js/default.js?<?= VERSION_JS ?>" type="text/javascript"></script>
-        <script src="/js/ajax.js?<?= VERSION_JS ?>" type="text/javascript"></script>
-        <script src="/js/cascade.js?<?= VERSION_JS ?>" type="text/javascript"></script>        
-        <script src="/js/jquery-input-validate.js?<?= VERSION_JS ?>" type="text/javascript"></script>        
     </body>
     <script type="text/javascript">
         $(document).ready(function()
         {
-            $(".submit-search-on-change").change(function ()
+            $("body").srLoader();
+            
+            $(document).on("change", ".submit-search-on-change", function ()
             {
                 var form = $(this).parents("form");                
                 if( form[0].checkValidity()) 
@@ -171,7 +176,7 @@
                 }
             });
             
-            $("form.search-form").submit(function()
+            $(document).on("submit", "form[method='get']", function()
             {
                 $(this).find("input").each(function()
                 {

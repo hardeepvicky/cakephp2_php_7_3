@@ -1,20 +1,18 @@
 //Ajax start
 $(document).ajaxStart(function(){
-    Loader.show();
+    $("body").trigger("sr-loader.show");
 });
 
 //Ajax complete
 $(document).ajaxComplete(function(){
-    Loader.hide(); 
+    $("body").trigger("sr-loader.hide");
     Layout.fixContentHeight();
     App.initAjax();
 });
 
 $(document).ajaxError(function( event, jqxhr, settings, thrownError ) 
 {
-    Loader.hide();
-    
-    bootbox.alert(jqxhr.responseText);
-    
+    $("body").trigger("sr-loader.hide");
+    bootbox.alert(jqxhr.responseText);    
     return;
 });

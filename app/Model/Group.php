@@ -1,7 +1,13 @@
 <?php
 class Group extends AppModel
 {
-    public $actsAs = array('Acl' => array('type' => 'requester'));
+    public $actsAs = [
+        'Acl' => ['type' => 'requester'],
+        "Vcache" => [
+            "cache_config" => "acl_config",
+            "fields" => ["id", "name"]
+        ]
+    ];
     
     public $hasMany = array(
         'User' => array(
