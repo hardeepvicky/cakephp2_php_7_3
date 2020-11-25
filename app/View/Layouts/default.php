@@ -13,14 +13,13 @@
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="Seven Rocks International" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/font-awesome/css/font-awesome.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/bootstrap/css/bootstrap.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="/assets/global/plugins/moment.min.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
         <link href="/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/bootstrap-dialog/bootstrap-dialog.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
@@ -28,8 +27,6 @@
         <link href="/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/select2/css/select2.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/select2/css/select2-bootstrap.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
-        <link href="/assets/global/plugins/datatables/datatables.min.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
-        <link href="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />        
         <link href="/assets/global/plugins/bootstrap3-editable/css/bootstrap-editable.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css?<?= VERSION_LIB ?>" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
@@ -99,10 +96,6 @@
         <script src="/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
         <script src="/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
         <script src="/assets/global/plugins/select2/js/select2.full.min.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
-        <script src="/assets/global/scripts/datatable.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
-        <script src="/assets/global/plugins/datatables/datatables.min.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
-        <script src="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js?<?= VERSION_LIB ?>" type="text/javascript"></script>        
-        <script src="/assets/pages/scripts/table-datatables-colreorder.min.js?<?= VERSION_LIB ?>" type="text/javascript"></script>
         <script src="/assets/global/plugins/bootbox.min.js?<?= VERSION_LIB ?>"></script>
         <script src="/assets/global/plugins/File-Validator/file-validator.js?<?= VERSION_LIB ?>" type="text/javascript" charset="utf-8"></script>
         <script src="/assets/global/plugins/bootstrap3-editable/js/bootstrap-editable.min.js?<?= VERSION_LIB ?>" type="text/javascript" charset="utf-8"></script>

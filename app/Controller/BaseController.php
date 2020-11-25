@@ -99,25 +99,83 @@ class BaseController extends Controller
             "controller" => $this->params['controller'],
             "action" => $this->params['action'],
             "url" => $this->params->url,
+            "have_heavy_query" => false
         );
         
-        $log_list =  array(
+        $sql_list = $heavy_sql_list =  array(
             implode(",", array("query", "affected", "numRows", "took") )
         );
+        
+        $dml_sql_list = [];
 
         foreach($log["log"] as $arr)
         {
-            unset($arr["params"]);
+            unset($arr["params"]);            
             $arr["query"] = trim(preg_replace('/\s+/', ' ', $arr["query"]));
-            $log_list[] = implode(",", array_values($arr) );
+            $sql_list[] = implode(",", array_values($arr) );
+            
+            if ($arr['took'] > 500)
+            {
+                $data['have_heavy_query'] = true;
+                $heavy_sql_list[] = implode(",", array_values($arr) );
+            }
+            
+            $is_insert = strpos($arr["query"], "INSERT");
+            $is_update = strpos($arr["query"], "UPDATE");
+            $is_delete = strpos($arr["query"], "DELETE");
+            
+            if ($is_insert !== FALSE || $is_update !== FALSE || $is_delete !== FALSE) 
+            {
+                $dml_sql_list[] = $arr["query"];
+            }
         }
 
         $data["sql_count"] = $log["count"];
         $data["sql_exec_time"] = $log["time"] / 1000;
-        $data["sql_log"] = implode(PHP_EOL, $log_list);
+        $data["sql_log"] = implode(PHP_EOL, $sql_list);
+        $data["dml_sql_log"] = implode(PHP_EOL, $dml_sql_list);
+        if ($data['have_heavy_query'])
+        {
+            $data["heavy_sql_log"] = implode(PHP_EOL, $heavy_sql_list);
+        }
         
         $this->load_model("SqlLog");
         $this->SqlLog->create();
         $this->SqlLog->save($data);
+    }
+    
+    protected function _saveRequestLog($post = [], $response = "", $model = null)
+    {
+        $this->_saveSqlLog($model);
+        
+        $data = [];
+        $data["post_data"] = json_encode($post);
+        $data["response"] = $response;
+        
+        $this->SqlLog->save($data);
+    }
+    
+    protected function jsonResonse($response, $save_log = true, $model = null)
+    {
+        $json = json_encode($response);
+                
+        if ($save_log)
+        {
+            $this->_saveRequestLog($this->request->data, $json, $model);
+        }
+        
+        echo $json; exit;
+    }
+    
+    protected function setLargeMemnory($model = null)
+    {
+        set_time_limit(0);
+        ini_set("memory_limit", "2024M");
+        ini_set("default_socket_timeout", 7200);
+        
+        $this->{$model}->query("SET session wait_timeout=28800");
+        $this->{$model}->query("SET session interactive_timeout=28800");
+        $this->{$model}->query("SET session net_read_timeout=28800");
+        $this->{$model}->query("SET session net_write_timeout=28800");
     }
 }
