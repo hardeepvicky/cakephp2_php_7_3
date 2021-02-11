@@ -84,13 +84,7 @@ require_once('functions.php');
 
 require_once('constants.php');
 require_once('static_array.php');
-
-require_once('Util.php');
-require_once('ImportUtility.php');
-require_once('ImageUtility.php');
-require_once('FileUtility.php');
-require_once('DateUtility.php');
-require_once('AWSFileUtility.php');
+require_once('icon_constants.php');
 
 require_once VENDORS . '/hardeep-vicky/php-query-builder/Where.php';
 

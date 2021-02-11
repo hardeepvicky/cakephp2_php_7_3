@@ -1,4 +1,4 @@
-Object.size = function(obj)
+Object.size = function (obj)
 {
     var size = 0, key;
     for (key in obj) {
@@ -8,17 +8,17 @@ Object.size = function(obj)
     return size;
 };
 
-String.replaceAll = function(search, replace, str)
+String.replaceAll = function (search, replace, str)
 {
     return str.replace(new RegExp(search, 'g'), replace);
 };
 
-String.contains = function(str, sub)
+String.contains = function (str, sub)
 {
     return str.indexOf(sub) >= 0;
 };
 
-String.containsBetween = function(str, start_cap, end_cap)
+String.containsBetween = function (str, start_cap, end_cap)
 {
     var arr = [];
 
@@ -31,8 +31,7 @@ String.containsBetween = function(str, start_cap, end_cap)
             var sub = str.substr(s_ind, (e_ind - s_ind + 1));
             arr.push(sub.replace(start_cap, "").replace(end_cap, ""));
             str = str.replace(sub, "");
-        }
-        else
+        } else
         {
             return arr;
         }
@@ -41,9 +40,9 @@ String.containsBetween = function(str, start_cap, end_cap)
     return arr;
 };
 
-String.toTitleCase = function(str) 
+String.toTitleCase = function (str)
 {
-    return str.replace(/(?:^|\s)\w/g, function(match) {
+    return str.replace(/(?:^|\s)\w/g, function (match) {
         return match.toUpperCase();
     });
 }
@@ -52,7 +51,7 @@ function toDataUrl(src, outputFormat, callback)
 {
     var img = new Image();
     img.crossOrigin = 'Anonymous';
-    img.onload = function() {
+    img.onload = function () {
         var canvas = document.createElement('CANVAS');
         canvas.height = this.height;
         canvas.width = this.width;
@@ -76,7 +75,7 @@ function toDataUrl(src, outputFormat, callback)
 
 function wait(time, callback, onStopCallback)
 {
-    var inverval_wait = setInterval(function()
+    var inverval_wait = setInterval(function ()
     {
         callback(time);
         time -= 1;
@@ -117,49 +116,47 @@ function download_csv(csv, filename) {
     downloadLink.click();
 }
 
-function table_to_csv(table, filename, rows) 
+function table_to_csv(table, filename, rows)
 {
     var csv = [];
 
     var ths = table.find(">thead > tr > th, >thead > tr > td");
-        
+
     if (typeof rows == "undefined")
     {
         rows = table.find(">tbody > tr").not(".csv-export-not-include");
     }
-    
+
     var cols = {};
     var row = [];
-    
+
     for (var j = 0; j < ths.length; j++)
     {
         var _is = $(ths[j]).attr("data-csv");
-        
+
         if (typeof _is == "undefined")
         {
             _is = true;
-        }
-        else
+        } else
         {
             _is = _is == "1";
         }
-        
+
         if (_is)
         {
             cols[j] = $(ths[j]);
             row.push('"' + cols[j].text().trim() + '"');
-        }
-        else
+        } else
         {
             cols[j] = 0;
         }
     }
-    
+
     console.log(cols);
-    
+
     csv.push(row.join(","));
 
-    for (var i = 0; i < rows.length; i++) 
+    for (var i = 0; i < rows.length; i++)
     {
         var row = [];
 
@@ -168,8 +165,8 @@ function table_to_csv(table, filename, rows)
         {
             if (cols[j] != 0)
             {
-                row.push('"' + $(tds[j]).text().trim() + '"'); 
-            }            
+                row.push('"' + $(tds[j]).text().trim() + '"');
+            }
         }
 
         csv.push(row.join(","));
@@ -182,12 +179,12 @@ function table_to_csv(table, filename, rows)
 function csv2array(strData, strDelimiter) {
     strDelimiter = (strDelimiter || ",");
     var objPattern = new RegExp((
-    // Delimiters.
-    "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-    // Quoted fields.
-    "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-    // Standard fields.
-    "([^\"\\" + strDelimiter + "\\r\\n]*))"), "gi");
+            // Delimiters.
+            "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
+            // Quoted fields.
+            "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
+            // Standard fields.
+            "([^\"\\" + strDelimiter + "\\r\\n]*))"), "gi");
     // Create an array to hold our data. Give the array
     // a default empty first row.
     var arrData = [[]];
@@ -215,7 +212,7 @@ function csv2array(strData, strDelimiter) {
             // We found a quoted value. When we capture
             // this value, unescape any double quotes.
             var strMatchedValue = arrMatches[2].replace(
-            new RegExp("\"\"", "g"), "\"");
+                    new RegExp("\"\"", "g"), "\"");
         } else {
             // We found a non-quoted value.
             var strMatchedValue = arrMatches[3];
@@ -248,21 +245,20 @@ function csv2json(csv) {
 function csvArray2csvheader(data)
 {
     var records = [], headers = [];
-                
-    for(var i in data)
+
+    for (var i in data)
     {
         var arr = data[i];
         if (i == 0)
         {
-            for(var a in arr)
+            for (var a in arr)
             {
                 headers.push(arr[a]);
             }
-        }
-        else
+        } else
         {
             var record = {};
-            for(var a in arr)
+            for (var a in arr)
             {
                 record[headers[a]] = arr[a];
             }
@@ -270,7 +266,7 @@ function csvArray2csvheader(data)
             records.push(record);
         }
     }
-    
+
     return records;
 }
 
@@ -283,7 +279,7 @@ function niceBytes(bytes, i)
         i = 0;
     }
 
-    var temp  = bytes / 1024;
+    var temp = bytes / 1024;
 
     if (temp > 1024)
     {
@@ -293,8 +289,7 @@ function niceBytes(bytes, i)
     if (temp < 1)
     {
         return bytes.toFixed(1) + " " + list[i];
-    }
-    else
+    } else
     {
         return temp.toFixed(1) + " " + list[i + 1];
     }
@@ -303,7 +298,7 @@ function niceBytes(bytes, i)
 function get_web_api_request()
 {
     var raw_request = window.localStorage.getItem("default_web_api_request");
-                
+
     if (raw_request === null)
     {
         bootbox.alert("Default Web Api Request not found. Please Re-login");
@@ -313,12 +308,333 @@ function get_web_api_request()
     try
     {
         var request = JSON.parse(raw_request);
-    }
-    catch(e)
+    } catch (e)
     {
         console.error("can not parse default_web_api_request");
         return;
     }
-    
+
     return request;
 }
+
+function form_show_errors(form, group_errors)
+{
+    $(form).find(".error-message").remove();
+
+    for (var model in group_errors)
+    {
+        var field_errors = group_errors[model];
+        for (var field in field_errors)
+        {
+            var errors = field_errors[field];
+
+            var html = "<ul class='error-message'>";
+            for (var a in errors)
+            {
+                html += "<li>" + errors[a] + "</li>";
+            }
+            html += "</ul>";
+
+            var key = "data[" + model + "][" + field + "]";
+            var input = $(form).find("input[name='" + key + "']").filter(":visible");
+            var select = $(form).find("select[name='" + key + "']").filter(":visible");
+
+            if (input.length > 0)
+            {
+                input.parent().append(html);
+            } else if (select.length > 0)
+            {
+                select.parent().append(html);
+            }
+        }
+    }
+
+    var error_ele = $(form).find(".error-message").first();
+
+    if (error_ele.length > 0)
+    {
+        $('html, body').animate({
+            'scrollTop': error_ele.position().top - 300
+        });
+
+        return true;
+    }
+
+    return false;
+}
+
+function form_clear(form)
+{
+    form.find("input,textarea").val("");
+    form.find("select").val("").trigger('change');
+    form.find("input[type='checkbox'], input[type='radio']").prop("checked", false);
+}
+
+function ajaxGet(url, opt)
+{
+    if (typeof opt == "undefined")
+    {
+        opt = {};
+    }
+    
+    opt = $.extend({
+        global : true,
+        isJsonResponse : true,
+        success : function ()
+        {
+            
+        }
+    }, opt);
+    
+    $.ajax({
+        url: url,
+        global: opt.global,
+        beforeSend: function () 
+        {
+            // Handle the beforeSend event
+        },
+        success: function (response, status, xhr) 
+        {
+            if (opt.isJsonResponse)
+            {
+                try
+                {
+                    response = JSON.parse(response);
+                } 
+                catch (e)
+                {
+                    bootbox.alert(response);
+                    return;
+                }
+
+                if (response['status'] == "1")
+                {
+                    opt.success(response);
+                } 
+                else
+                {
+                    bootbox.alert(response['msg']);
+                }
+            }
+            else
+            {
+                opt.success(response);
+            }
+        },
+        error : function (xhr, status, error)
+        {
+            $.sr.error.detail(url, error);
+        }
+    });
+}
+
+function ajaxPost(url, data, opt)
+{
+    opt = $.extend({
+        global : true,
+        isJsonResponse : true,
+        success : function ()
+        {
+            
+        }
+    }, opt);
+    
+    $.ajax({
+        url: url,
+        method : 'POST',
+        data : data,
+        global: opt.global,
+        beforeSend: function () 
+        {
+            // Handle the beforeSend event
+        },
+        success: function (response, status, xhr) 
+        {
+            if (opt.isJsonResponse)
+            {
+                try
+                {
+                    response = JSON.parse(response);
+                } 
+                catch (e)
+                {
+                    bootbox.alert(response);
+                    return;
+                }
+
+                if (response['status'] == "1")
+                {
+                    opt.success(response);
+                } 
+                else
+                {
+                    bootbox.alert(response['msg']);
+                }
+            }
+            else
+            {
+                opt.success(response);
+            }
+        },
+        error : function (xhr, status, error)
+        {
+            $.sr.error.detail(url, error);
+        }
+    });
+}
+
+function ajaxFormPost(form, opt)
+{
+    opt = $.extend({
+        global : true,
+        success : function ()
+        {
+            
+        }
+    }, opt);
+    
+    $.ajax({
+        url: form.attr("action"),
+        method : 'POST',
+        data : form.serializeArray(),
+        global: opt.global,
+        beforeSend: function () 
+        {
+            if( !form[0].checkValidity()) 
+            {
+                form[0].reportValidity();
+                return false;
+            }
+            
+            return true;
+        },
+        success: function (response, status, xhr) 
+        {
+            try
+            {
+                response = JSON.parse(response);
+            } 
+            catch (e)
+            {
+                bootbox.alert(response);
+                return;
+            }
+
+            if (response['status'] == "1")
+            {
+                opt.success(response);
+            } 
+            else
+            {
+                var error_input_found = false;
+                if (typeof response["errors"] != "undefined")
+                {
+                    error_input_found = form_show_errors(form, response["errors"]);
+                }
+
+                if (!error_input_found && typeof response["msg"] != "undefined")
+                {
+                    bootbox.alert(response["msg"]);
+                }
+            }
+        },
+        error : function (xhr, status, error)
+        {
+            $.sr.error.detail(url, error);
+        }
+    });
+}
+
+function confirmBeforeAjaxGet(title, href, callback)
+{
+    bootbox.confirm({
+        message: title,
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result)
+        {
+            if (result)
+            {
+                ajaxGet(href, 
+                {
+                    success : callback                    
+                });
+            }
+        }
+    });
+}
+
+function confirmBeforeHttpGet(title, href)
+{
+    bootbox.confirm({
+        message: title,
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result)
+        {
+            if (result)
+            {
+                $("body").trigger("sr-loader.show");
+                window.location.href = href;
+            }
+        }
+    });
+
+    return false;
+}
+
+function load_content_on_scroll($obj, url, total_page_count, callback)
+{
+    $obj.on('scroll', function ()
+    {
+        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
+        {
+            var is_loading = $obj.attr("data-is_loading");
+            is_loading = is_loading ? parseInt(is_loading) : 0;
+
+            if (!is_loading)
+            {
+                var page = $obj.attr("data-page");
+                page = page ? parseInt(page) : 0;
+                page += 1;
+
+                if (page <= total_page_count)
+                {
+                    url = url.replace('{page}', page);
+
+                    $obj.attr("data-is_loading", 1);
+
+                    ajaxGet(url,
+                    {
+                        global : true,
+                        isJsonResponse : false,
+                        success : function(response)
+                        {
+                            $obj.attr("data-is_loading", 0);
+                            $obj.attr("data-page", page);
+                            $obj.append(response);
+
+                            callback(response);
+                        }
+                    });
+                }
+            }
+        }
+    });
+}   

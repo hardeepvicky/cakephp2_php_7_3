@@ -3,6 +3,9 @@
         <div class="col-md-9 pull-left">
             <?php echo $this->element("breadcum"); ?>
         </div>
+        <div class="col-md-3 pull-right" style="text-align: right; padding-top: 4px;">
+            <a id="create" href="/Users/acl" class="btn blue btn-circle">Create</a>
+        </div>
     </div>
 </div>
 <style>
@@ -97,6 +100,15 @@
                 }
             }
         });
+        
+        $("#create").click(function()
+        {
+            var url = $(this).attr("href");
+            
+            $.get(url);
+            
+            return false;
+        })
         
         $("#group_id").trigger("change");
     });

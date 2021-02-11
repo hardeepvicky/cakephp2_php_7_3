@@ -94,12 +94,7 @@ class UsersController extends AppController
 
         if ($this->authUser)
         {
-            require_once(APP . "Config/Menu.php");
-            $menus = Menu::get(Menu::$default, $this->Acl, $this->authUser['group_id']);
-            
-            $home_link = Menu::getDefaultLink($menus);
-            
-            $this->redirect($home_link);
+            $this->redirect(["controller" => "Dashboards", "admin" => true]);
         }
     }
     
@@ -308,18 +303,8 @@ class UsersController extends AppController
             }
         }
         
-        $sections = array();
-        
-        $sections['Dashboard'] = array(
-            'dashboard' => 'controllers/Dashboards/admin_index',
-        );
-        
-        $sections['User'] = array(
-            'Summary' => 'controllers/Users/admin_index',
-            'Add' => 'controllers/Users/admin_add',
-            'Edit' => 'controllers/Users/admin_edit',
-            'Toggle Active' => 'controllers/Users/ajaxToggleStatus',
-        );
+        require_once APP . 'vendor/AcoSection.php';
+        $sections = (new SectionAco())->get();
         
         $this->set(compact("sections", "aro_acos_list"));
     }
